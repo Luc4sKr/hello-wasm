@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello WASM</title>
+</head>
+<body>
+    
+    <script type="module">
+        import init, { add } from "./pkg/hello_wasm.js";
+
+        await init();
+
+        console.log(add(1, 2))
+    </script>
+</body>
+</html>
