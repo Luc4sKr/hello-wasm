@@ -6,13 +6,8 @@
     <title>Hello WASM</title>
 </head>
 <body>
+    <h1 id="output"></h1>
     
-    <script type="module">
-        import init, { add } from "./pkg/hello_wasm.js";
-
-        await init();
-
-        console.log(add(1, 2))
-    </script>
+    <script src="scripts.js" type="module"></script>
 </body>
 </html>
