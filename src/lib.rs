@@ -6,13 +6,29 @@ pub fn main() -> Result<(), JsValue> {
     let document = window.document().expect("should have a document on window");
     let body = document.body().expect("document should have a body");
 
-    // Manufacture the element we're gonna append
     let val = document.create_element("p")?;
     val.set_inner_html("Hello from Rust!");
 
     body.append_child(&val)?;
 
     Ok(())
+}
+
+#[wasm_bindgen(module = "src\\js\\defined-in-js.js")]
+extern "C" {
+    fn name() -> String;
+
+    type MyClass;
+
+    #[wasm_bindgen(constructor)]
+    fn new() -> MyClass;
+
+    #[wasm_bindgen(method, getter)]
+    fn number(this: &MyClass) -> u32;
+    #[wasm_bindgen(method, setter)]
+    fn set_number(this: &MyClass, number: u32) -> MyClass;
+    #[wasm_bindgen(method)]
+    fn render(this: &MyClass) -> String;
 }
 
 #[wasm_bindgen]
@@ -24,4 +40,3 @@ pub fn hello_world() -> wasm_bindgen::JsValue {
 pub fn add(a: i32, b: i32) -> i32 {
     return a + b;
 }
-
