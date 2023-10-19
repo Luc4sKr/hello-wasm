@@ -1,8 +1,14 @@
-import init, { add, hello_world } from "./pkg/hello_wasm.js";
-await init();
+import init, { main, add, hello_world } from "./pkg/hello_wasm.js";
 
-console.log(add(2, 5))
+async function run() {
+    await init();
 
-const outputElement = document.getElementById("output");
-const result = hello_world();
-outputElement.textContent = result;
+    console.log(add(2, 5))
+
+    const outputElement = document.getElementById("output");
+    const result = hello_world();
+    outputElement.textContent = result;
+}
+
+
+run();
